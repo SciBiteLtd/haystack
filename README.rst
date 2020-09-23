@@ -90,7 +90,7 @@ PyPi::
 
 Master branch (if you wanna try the latest features)::
 
-    git clone https://github.com/deepset-ai/haystack.git
+    git clone https://github.com/SciBiteLtd/haystack.git
     cd haystack
     pip install --editable .
 
