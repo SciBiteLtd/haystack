@@ -406,13 +406,10 @@ class ElasticsearchDocumentStore(BaseDocumentStore):
             body= {
                 "size": top_k,
                 "query": {
-                    "script_score": {
-                        "query": {"match_all": {}},
-                        "script": {
-                            "source": f"cosineSimilarity(params.query_vector,doc['{self.embedding_field}']) + 1.0",
-                            "params": {
-                                "query_vector": query_emb.tolist()
-                            }
+                    "knn": {
+                        "{self.embedding_field}": {
+                            "vector": query_emb.tolist(),
+                            "k": top.k
                         }
                     }
                 }
